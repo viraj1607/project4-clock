@@ -26,16 +26,14 @@ const msg=document.querySelector(".txt")
 var date=new Date();
 var hr=date.getHours();
 
+// REALTIME UPDATE
+
 function realTimeMsg(){
     if(hr>=5 && hr<12) {
-        greet.innerHTML="Good Morning !!";
-        msg.innerHTML="WAKE UP AND DO WORKOUT";
-        msg.style.backgroundImage="url(./images/morning.svg)";
+       morning();
     }
     else if(hr>=12 && hr<17) {
-        greet.innerHTML="Good Afternoon!! ";
-        msg.innerHTML="LET'S HAVE SOME LUNCH"
-        msg.style.backgroundImage="url(./images/lunch.svg)";
+        afternoon();
     }
     else if(hr>=17 && hr<21) {
         greet.innerHTML="Good Evening !!"
@@ -43,25 +41,66 @@ function realTimeMsg(){
         msg.style.backgroundImage="url(./images/playing.svg)";
     }
     else {
-        greet.innerHTML="Good Night !!"
-        msg.innerHTML="HAVE DINNER AND GO FOR A SLEEP"
-        msg.style.backgroundImage="url(./images/night.svg)";
+        night();
     }
 }
 
 realTimeMsg();
 
+// PARTY BUTTON
+
 const partyBtn=document.querySelector(".msg")
-
-partyBtn.addEventListener("click",()=>{
-    msg.innerHTML="IT'S PARTY TIME !!"
-    msg.style.backgroundImage="url(./images/party.svg)";
-    partyBtn.innerHTML="Double Click to Normal"
+let isParty = false;
+partyBtn.addEventListener("click", () => {
+    if (isParty) {
+        partyBtn.innerHTML = "Lets Party";
+        realTimeMsg();
+    } else {
+        partyBtn.innerHTML="End Party"
+        msg.style.backgroundImage = "url(./images/party.svg)";
+        msg.innerHTML="IT'S PARTY TIME !!";
+    }
+    isParty =! isParty; 
 });
 
-partyBtn.addEventListener("dblclick",()=>{
-    partyBtn.innerHTML="Party Time !"
-    realTimeMsg();
-});
 
 
+// partyBtn.addEventListener("click",()=>{
+//     msg.innerHTML="IT'S PARTY TIME !!"
+//     msg.style.backgroundImage="url(./images/party.svg)";
+//     partyBtn.innerHTML="Double Click to Normal"
+// });
+
+// partyBtn.addEventListener("dblclick",()=>{
+//     partyBtn.innerHTML="Party Time !"
+//     realTimeMsg();
+// });
+
+// UPDATE ON TIME SELECTION
+
+document.getElementById('my-select').addEventListener('change', morning);
+
+document.getElementById('my-select-2').addEventListener('change', afternoon);
+
+document.getElementById('my-select-3').addEventListener('change', night);
+
+
+// FUNCTIONS
+
+function morning(){
+    greet.innerHTML="Good Morning !!";
+    msg.innerHTML="WAKE UP AND DO WORKOUT";
+    msg.style.backgroundImage="url(./images/morning.svg)";
+}
+
+function afternoon(){
+    greet.innerHTML="Good Afternoon!! ";
+    msg.innerHTML="LET'S HAVE SOME LUNCH"
+    msg.style.backgroundImage="url(./images/lunch.svg)";
+}
+
+function night(){
+    greet.innerHTML="Good Night !!"
+    msg.innerHTML="HAVE DINNER AND GO FOR A SLEEP"
+    msg.style.backgroundImage="url(./images/night.svg)";
+}
