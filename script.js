@@ -78,11 +78,32 @@ partyBtn.addEventListener("click", () => {
 
 // UPDATE ON TIME SELECTION
 
-document.getElementById('my-select').addEventListener('change', morning);
+document.getElementById('my-select').addEventListener('change', function(){
+    if(this.value==="select-time"){
+        realTimeMsg();
+    }
+    else{
+        morning();
+    }
+});
 
-document.getElementById('my-select-2').addEventListener('change', afternoon);
+document.getElementById('my-select-2').addEventListener('change', function(){
+    if(this.value==="select-time"){
+        realTimeMsg();
+    }
+    else{
+        afternoon();
+    }
+});
 
-document.getElementById('my-select-3').addEventListener('change', night);
+document.getElementById('my-select-3').addEventListener('change', function(){
+    if(this.value==="select-time"){
+        realTimeMsg();
+    }
+    else{
+        night();
+    }
+});
 
 
 // FUNCTIONS
