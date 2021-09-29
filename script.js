@@ -81,6 +81,7 @@ partyBtn.addEventListener("click", () => {
 document.getElementById('my-select').addEventListener('change', function(){
     if(this.value==="select-time"){
         realTimeMsg();
+        console.log(this.value)
     }
     else{
         morning();
