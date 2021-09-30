@@ -28,24 +28,24 @@ var hr=date.getHours();
 
 // REALTIME UPDATE
 
-function realTimeMsg(){
-    if(hr>=5 && hr<12) {
-       morning();
-    }
-    else if(hr>=12 && hr<17) {
-        afternoon();
-    }
-    else if(hr>=17 && hr<21) {
-        greet.innerHTML="Good Evening !!"
-        msg.innerHTML="LET'S PLAY SOME GAME"
-        msg.style.backgroundImage="url(./images/playing.svg)";
-    }
-    else {
-        night();
-    }
-}
+// function realTimeMsg(){
+//     if(hr>=5 && hr<12) {
+//        morning();
+//     }
+//     else if(hr>=12 && hr<17) {
+//         afternoon();
+//     }
+//     else if(hr>=17 && hr<21) {
+//         greet.innerHTML="Good Evening !!"
+//         msg.innerHTML="LET'S PLAY SOME GAME"
+//         msg.style.backgroundImage="url(./images/playing.svg)";
+//     }
+//     else {
+//         night();
+//     }
+// }
 
-realTimeMsg();
+// realTimeMsg();
 
 // PARTY BUTTON
 
@@ -54,11 +54,12 @@ let isParty = false;
 partyBtn.addEventListener("click", () => {
     if (isParty) {
         partyBtn.innerHTML = "Lets Party";
-        realTimeMsg();
+        default_fn();
     } else {
         partyBtn.innerHTML="End Party"
         msg.style.backgroundImage = "url(./images/party.svg)";
         msg.innerHTML="IT'S PARTY TIME !!";
+        
     }
     isParty =! isParty; 
 });
@@ -79,50 +80,60 @@ partyBtn.addEventListener("click", () => {
 // UPDATE ON TIME SELECTION
 
 document.getElementById('my-select').addEventListener('change', function(){
-    if(this.value==="select-time"){
-        realTimeMsg();
+    if(this.value==hr){
+        morning();
         console.log(this.value)
     }
     else{
-        morning();
+        default_fn();
     }
 });
 
 document.getElementById('my-select-2').addEventListener('change', function(){
-    if(this.value==="select-time"){
-        realTimeMsg();
+    if(this.value==hr){
+        afternoon();
     }
     else{
-        afternoon();
+        default_fn();
     }
 });
 
 document.getElementById('my-select-3').addEventListener('change', function(){
-    if(this.value==="select-time"){
-        realTimeMsg();
+    if(this.value==hr){
+        night();
     }
     else{
-        night();
+        default_fn();
     }
 });
 
-
+default_fn();
 // FUNCTIONS
 
 function morning(){
+    greet.style.display="block"
     greet.innerHTML="Good Morning !!";
     msg.innerHTML="WAKE UP AND DO WORKOUT";
     msg.style.backgroundImage="url(./images/morning.svg)";
 }
 
 function afternoon(){
+    greet.style.display="block"
     greet.innerHTML="Good Afternoon!! ";
     msg.innerHTML="LET'S HAVE SOME LUNCH"
     msg.style.backgroundImage="url(./images/lunch.svg)";
 }
 
 function night(){
+    greet.style.display="block"
     greet.innerHTML="Good Night !!"
     msg.innerHTML="HAVE DINNER AND GO FOR A SLEEP"
     msg.style.backgroundImage="url(./images/night.svg)";
+}
+
+function default_fn(){
+    greet.style.display="none"
+    greet.innerHTML=" "
+    msg.innerHTML=" "
+    msg.style.backgroundImage="url(./images/default.svg)";
 }
